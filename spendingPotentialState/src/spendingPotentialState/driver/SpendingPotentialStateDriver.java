@@ -2,6 +2,8 @@ package spendingPotentialState.driver;
 
 import java.io.File;
 
+import spendingPotentialState.state.SpendingPotentialStateContext;
+import spendingPotentialState.state.SpendingPotentialStateContextI;
 import spendingPotentialState.validator.ValidatorFetcher;
 import spendingPotentialState.validator.ValidatorUtil;
 
@@ -24,15 +26,22 @@ public class SpendingPotentialStateDriver {
 				System.exit(0);
 			}
 
-			String ifilename = "";
-			String workingDirectory = System.getProperty("user.dir");
-			ifilename = workingDirectory + File.separator + args[0];
+			File file = new File(args[0]);
+			String inputFilePath = file.getAbsolutePath();
+			file = new File(args[1]);
+			String itemFile = file.getAbsolutePath();
+			file = new File(args[3]);
+			String outputFile = file.getAbsolutePath();
 
 			try {
 				ValidatorUtil.validate("failed",
 						ValidatorFetcher.commandLineValidator(args, REQUIRED_NUMBER_OF_ARGS),
-						ValidatorFetcher.missingFileValidator(ifilename), ValidatorFetcher.emptyFileValidator(args[0]));
-
+						ValidatorFetcher.missingFileValidator(inputFilePath),ValidatorFetcher.missingFileValidator(itemFile),
+						ValidatorFetcher.missingFileValidator(outputFile),ValidatorFetcher.emptyFileValidator(args[0]),
+						ValidatorFetcher.windowValidator(args[2]));
+				
+				SpendingPotentialStateContextI sps = new SpendingPotentialStateContext(inputFilePath, itemFile, args[3], outputFile);
+				sps.checkPotentialState();
 
 			} catch (Exception e) {
 				e.printStackTrace();

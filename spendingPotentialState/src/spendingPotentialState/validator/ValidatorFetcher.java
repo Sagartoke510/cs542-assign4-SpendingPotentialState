@@ -7,6 +7,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 
 import spendingPotentialState.cmdLineExceptions.CmdLineInputException;
+import spendingPotentialState.cmdLineExceptions.WindowException;
 
 
 /**
@@ -71,6 +72,17 @@ public class ValidatorFetcher {
 			}
 		};
 	
+	}
+	
+	public static Validator windowValidator(String windowSizeIn) {
+		return new Validator() {
+
+			@Override
+			public void run() throws WindowException {
+				if (Integer.parseInt(windowSizeIn) <= 0)
+					throw new WindowException("Invalid window Size");
+			}
+		};
 	}
 
 	
