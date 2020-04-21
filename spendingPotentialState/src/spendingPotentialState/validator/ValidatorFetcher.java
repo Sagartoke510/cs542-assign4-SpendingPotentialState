@@ -19,7 +19,7 @@ public class ValidatorFetcher {
 			@Override
 			public void run() throws FileNotFoundException {
 				if (!Files.exists(Paths.get(inputFilePath))) {
-					throw new FileNotFoundException("nvalid input file or input file in incorrect location");
+					throw new FileNotFoundException("Invalid input file or input file in incorrect location");
 				}
 			}
 		};

@@ -4,9 +4,13 @@ import java.io.IOException;
 import java.nio.file.InvalidPathException;
 import java.text.NumberFormat;
 import java.text.ParseException;
+import java.util.List;
+import java.util.Map;
 
 import spendingPotentialState.util.FileProcessor;
+import spendingPotentialState.util.ResultI;
 import spendingPotentialState.util.RunningAverage;
+import spendingPotentialState.util.RunningAverageI;
 
 public class SpendingPotentialStateContext implements SpendingPotentialStateContextI{
 	
@@ -15,7 +19,8 @@ public class SpendingPotentialStateContext implements SpendingPotentialStateCont
 	private Integer windowSize;
 	private String outputFile;
 	private double sum;
-	RunningAverage	runningAverage;
+	private Map<String, List<String>> itemsAvailableList;
+	private ResultI itemsResult;
 
 	public SpendingPotentialStateContext(String inputFilePathIn, String itemFileIn, String windowSizeIn , String outputFileIn) {
 	
@@ -30,12 +35,27 @@ public class SpendingPotentialStateContext implements SpendingPotentialStateCont
 		
 		try {
 			FileProcessor fp = new FileProcessor(inputFile);
+			RunningAverageI runningAverage = new RunningAverage(windowSize);
+			String[] list = new String[2];
+			Double runningAverageResult = 0.0;
+			itemsAvailableList = fp.fetchItems(itemFile);
+			ChangeStateI currentStateOfPerson = new BasicState(itemsAvailableList,itemsResult);
 			while (fp.getLine() != null) {
-				Number n = NumberFormat.getInstance().parse(fp.poll().trim());
+				String line = fp.poll();
+				if(line.contains("money")) {
+					list = line.split(":");
+					runningAverageResult = runningAverage.calculateRunningAverage(Integer.parseInt(list[1]));
+					System.out.println("Running Average "+ runningAverageResult);
+					
+				}
+				else if(line.contains("item")) {
+					list = line.split(":");
+					
+				}
 			}
 			
 			FileProcessor fpi = new FileProcessor(itemFile);
-		} catch (InvalidPathException | SecurityException | IOException | ParseException e ) {
+		} catch (InvalidPathException | SecurityException | IOException e ) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}

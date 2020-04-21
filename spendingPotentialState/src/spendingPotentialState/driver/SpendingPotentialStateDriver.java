@@ -37,10 +37,10 @@ public class SpendingPotentialStateDriver {
 				ValidatorUtil.validate("failed",
 						ValidatorFetcher.commandLineValidator(args, REQUIRED_NUMBER_OF_ARGS),
 						ValidatorFetcher.missingFileValidator(inputFilePath),ValidatorFetcher.missingFileValidator(itemFile),
-						ValidatorFetcher.emptyFileValidator(args[0]),
+						ValidatorFetcher.emptyFileValidator(args[0]),ValidatorFetcher.emptyFileValidator(args[1]),
 						ValidatorFetcher.windowValidator(args[2]));
 				
-				SpendingPotentialStateContextI sps = new SpendingPotentialStateContext(inputFilePath, itemFile, args[3], outputFile);
+				SpendingPotentialStateContextI sps = new SpendingPotentialStateContext(inputFilePath, itemFile, args[2], outputFile);
 				sps.checkPotentialState();
 
 			} catch (Exception e) {

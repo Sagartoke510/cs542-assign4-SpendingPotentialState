@@ -1,11 +1,40 @@
 package spendingPotentialState.state;
 
-public class BasicState implements ChangeStateI {
+import java.util.List;
+import java.util.Map;
 
-	@Override
-	public void changeStateOnRunningAverage() {
-		// TODO Auto-generated method stub
+import spendingPotentialState.util.ResultI;
+
+public class BasicState implements ChangeStateI {
+		private State state;
+		private ResultI result;
+		private ItemChecker itemChecker;
+		private CheckChangeState checkChangeState;
+		private ChangeStateI changedState;
+
+
+	public BasicState(Map<String, List<String>> itemsAvailableList, ResultI itemsResultIn) {
+		
+		result=itemsResultIn;
+		itemChecker = new ItemChecker(itemsAvailableList);
+		checkChangeState = new CheckChangeState(itemsAvailableList,result);
+		state = state.BASIC;
+		
 		
 	}
+
+	@Override
+	public ChangeStateI changeStateOnRunningAverage(Double runningAverage) {
+		changedState = checkChangeState.changeState(runningAverage);
+		return changedState;
+	}
+
+	@Override
+	public void checkItem(String item) {
+		
+		
+	}
+
+	
 
 }

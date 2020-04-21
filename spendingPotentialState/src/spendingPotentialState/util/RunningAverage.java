@@ -7,11 +7,11 @@ public class RunningAverage implements RunningAverageI {
 
 	private Integer windowSize;
 	private static Queue<Number> numbers = new LinkedList<Number>();
-	private double runningAverage;
+	private double runningAverage=0.0;
 	private double sum;
 
-	public RunningAverage(String windowSizeIn){
-		windowSize = Integer.parseInt(windowSizeIn);
+	public RunningAverage(Integer windowSizeIn){
+		windowSize = windowSizeIn;
 
 	}
 
@@ -20,11 +20,11 @@ public class RunningAverage implements RunningAverageI {
 		
 			sum = sum + n.intValue();
 			numbers.add(n);
-			if (numbers.size() == windowSize) {
+			if (numbers.size() > windowSize) {
 
 				sum = sum - numbers.remove().intValue();
 			}
-			return runningAverage = sum / numbers.size();
-
+			 runningAverage = sum / numbers.size();
+			 return runningAverage;
 	}
 }

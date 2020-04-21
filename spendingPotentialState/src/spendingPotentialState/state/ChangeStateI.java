@@ -2,5 +2,6 @@ package spendingPotentialState.state;
 
 public interface ChangeStateI {
 
-	void changeStateOnRunningAverage();
+	public ChangeStateI changeStateOnRunningAverage(Double runningAverage);
+	public void checkItem(String item);
 }

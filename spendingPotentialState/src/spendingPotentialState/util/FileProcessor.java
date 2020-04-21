@@ -1,26 +1,23 @@
 package spendingPotentialState.util;
 
-import java.io.FileNotFoundException;
 import java.io.BufferedReader;
-import java.io.FileReader;
 import java.io.File;
-import java.io.IOException;
 import java.io.FileNotFoundException;
-
+import java.io.FileReader;
+import java.io.IOException;
 import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.nio.file.InvalidPathException;
-
+import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
-/**
- * The class {@code FileProcessor} processes the input and read contents line by line.
- * @author Sagar Toke
- *
- */
-public final class FileProcessor {
+public class FileProcessor {
+
 	private BufferedReader reader;
 	private String line;
+	private Map<String, List<String>> itemsList=null;
 
 
 	public String getLine() {
@@ -51,6 +48,25 @@ public final class FileProcessor {
 		return newValue;
 	}
 
+	public Map<String,List<String>> fetchItems(String itemFile) throws IOException{
+		reader = new BufferedReader(new FileReader(new File(itemFile)));
+		String[] list = new String[2];
+		itemsList = new HashMap<String, List<String>>();
+		ArrayList<String> itemsValue = new ArrayList<>();
+		while(true) {
+		line = reader.readLine();
+		
+		if(null == line) break;
+		list=line.split(":");
+		
+		if(itemsList.containsValue(list[0])) {
+			itemsList.put(list[0], itemsValue);
+		}
+		itemsList.get(list[0]).add(list[1]);
+		}
+		return itemsList;
+		
+	}
 	/**
 	 * Method to close all the resources open to read the file
 	 * @throws IOException throws exception if null
