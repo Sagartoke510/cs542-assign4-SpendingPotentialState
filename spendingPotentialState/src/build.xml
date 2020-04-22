@@ -48,7 +48,7 @@
         <java jar="${BUILD}/jar/spendingPotentialState.jar"  fork="true">
 	<arg value="${inputFile}"/> <!-- Input filename.-->
 	<arg value="${availableItemsFile}"/> <!-- Available items file.--> 
-	<arg value="${runningAverageWindowSize }"/> <!-- Window size for running average calculation -->
+	<arg value="${runningAverageWindowSize}"/> <!-- Window size for running average calculation -->
 	<arg value="${outputFile}"/> <!-- Output filename. -->
 	    </java>	
     </target>

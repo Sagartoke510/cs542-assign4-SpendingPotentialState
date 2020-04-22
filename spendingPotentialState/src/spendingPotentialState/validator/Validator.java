@@ -6,7 +6,7 @@ package spendingPotentialState.validator;
 public interface Validator {
 	/**
 	 * Method to run appropriate validator
-	 * @throws Exception
+	 * @throws Exception  exception handled by validatorfetcher class
 	 */
 	void run() throws Exception;
 

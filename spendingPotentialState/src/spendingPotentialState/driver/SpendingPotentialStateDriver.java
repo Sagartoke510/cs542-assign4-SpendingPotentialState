@@ -43,7 +43,7 @@ public class SpendingPotentialStateDriver {
 						ValidatorFetcher.windowValidator(args[2]));
 				
 				SpendingPotentialStateContextI sps = new SpendingPotentialStateContext(inputFilePath, itemFile, args[2], outputFile);
-				sps.checkPotentialState();
+				sps.changeStateOnRunningAverage();
 		
 			} catch (Exception e) {
 				e.printStackTrace();

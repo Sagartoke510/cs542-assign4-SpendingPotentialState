@@ -8,6 +8,12 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
+/** This {@code Results} class which implements {@code ResultI} to set the result of the state and write it to the output file.
+ * 
+ * @author sagar Toke.
+ *
+ */
+
 public class Results implements ResultI{
 	private String itemOutputFile;
 	private static List<String> runningAverage = new ArrayList<String>();

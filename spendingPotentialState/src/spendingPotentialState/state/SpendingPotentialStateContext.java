@@ -12,6 +12,15 @@ import spendingPotentialState.util.Results;
 import spendingPotentialState.util.RunningAverage;
 import spendingPotentialState.util.RunningAverageI;
 
+/**
+ * This is {@code SpendingPotentialStateContext} class which implements
+ * {@code SpendingPotentialStateContextI} interface. It calculates the running average
+ * and check input file and item to set the set of person on running average.
+ * 
+ * @author Sagar Toke
+ *
+ */
+
 public class SpendingPotentialStateContext implements SpendingPotentialStateContextI {
 
 	private String inputFile;
@@ -34,7 +43,7 @@ public class SpendingPotentialStateContext implements SpendingPotentialStateCont
 	}
 
 	@Override
-	public void checkPotentialState() {
+	public void changeStateOnRunningAverage() {
 
 		try {
 			FileProcessor fp = new FileProcessor(inputFile);

@@ -1,6 +1,6 @@
 package spendingPotentialState.cmdLineExceptions;
 /**
-* The class {@code CmdLineInputException} is a form of exception
+* The class {@code CmdLineInputException} is a form of Command line exception
 */
 public class CmdLineInputException extends Exception{
 	/**

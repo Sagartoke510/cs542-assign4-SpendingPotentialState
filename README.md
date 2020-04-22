@@ -3,10 +3,13 @@
 
 -----------------------------------------------------------------------
 -----------------------------------------------------------------------
-
+Point to note:
+1.Used 1 slack day
+2. input.txt should be in spendingPotentialState/ directory 
+3. Output file will be generated at spendingPotentialState/ directory 
 
 Following are the commands and the instructions to run ANT on your project.
-#### Note: build.xml is present in numberPlay/src folder.
+#### Note: build.xml is present in spendingPotentialState/src folder.
 
 -----------------------------------------------------------------------
 ## Instruction to clean:
@@ -42,7 +45,7 @@ ant run -buildfile spendingPotentialState/src/build.xml
 
 -----------------------------------------------------------------------
 ## Description:
-
+State Pattern implementation
 
 ##References and citation
 
@@ -56,6 +59,6 @@ I am involved in plagiarism or cheating an official form will be
 submitted to the Academic Honesty Committee of the Watson School to
 determine the action that needs to be taken. "
 
-Date: [02/25/2020]
+Date: [04/21/2020]
 
 
