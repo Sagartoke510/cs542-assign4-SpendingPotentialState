@@ -11,25 +11,30 @@ public class ExtravagentState implements ChangeStateI {
 	private ItemChecker itemChecker;
 	private CheckChangeState checkChangeState;
 	private ChangeStateI changedState;
+
 	public ExtravagentState(Map<String, List<String>> itemsAvailableList, ResultI resultIn) {
-		result=resultIn;
+		result = resultIn;
 		itemChecker = new ItemChecker(itemsAvailableList);
-		checkChangeState = new CheckChangeState(itemsAvailableList,result);
+		checkChangeState = new CheckChangeState(itemsAvailableList, result);
 		state = state.EXTRAVAGENT;
 	}
 
 	@Override
 	public ChangeStateI changeStateOnRunningAverage(Double runningAverage) {
-		// TODO Auto-generated method stub
-		return null;
+		changedState = checkChangeState.changeState(runningAverage);
+		return changedState;
 	}
 
 	@Override
 	public void checkItem(String item) {
-		// TODO Auto-generated method stub
+		if(itemChecker.checkSuperExpensiveItemStatus(item)) {
+			result.setResult(this.state.toString(), item, "YES");
+		}
+		else {
+			result.setResult(this.state.toString(), item, "NO");
+		}
+
 		
 	}
-
-	
 
 }

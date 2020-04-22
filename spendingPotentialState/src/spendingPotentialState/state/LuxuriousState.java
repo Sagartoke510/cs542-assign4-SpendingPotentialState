@@ -5,32 +5,35 @@ import java.util.Map;
 
 import spendingPotentialState.util.ResultI;
 
-public class LuxuriousState implements ChangeStateI{
+public class LuxuriousState implements ChangeStateI {
 	private State state;
 	private ResultI result;
 	private ItemChecker itemChecker;
 	private CheckChangeState checkChangeState;
 	private ChangeStateI changedState;
-	
 
 	public LuxuriousState(Map<String, List<String>> itemsAvailableList, ResultI resultIn) {
-		result=resultIn;
+		result = resultIn;
 		itemChecker = new ItemChecker(itemsAvailableList);
-		checkChangeState = new CheckChangeState(itemsAvailableList,result);
-		state = state.EXTRAVAGENT;
-		}
+		checkChangeState = new CheckChangeState(itemsAvailableList, result);
+		state = state.LUXURIOUS;
+	}
 
 	@Override
 	public ChangeStateI changeStateOnRunningAverage(Double runningAverage) {
-		// TODO Auto-generated method stub
-		return null;
+		changedState = checkChangeState.changeState(runningAverage);
+		return changedState;
 	}
 
 	@Override
 	public void checkItem(String item) {
-		// TODO Auto-generated method stub
-		
-	}
+		if(itemChecker.checkModeratelyExpensiveItemStatus(item)) {
+			result.setResult(this.state.toString(), item, "YES");
+		}
+		else {
+			result.setResult(this.state.toString(), item, "NO");
+		}
 
+	}
 
 }

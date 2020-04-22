@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import spendingPotentialState.util.ResultI;
+import spendingPotentialState.util.Results;
 
 public class BasicState implements ChangeStateI {
 		private State state;
@@ -31,6 +32,15 @@ public class BasicState implements ChangeStateI {
 
 	@Override
 	public void checkItem(String item) {
+		
+		if(itemChecker.checkBasicItemStatus(item)) {
+			result.setResult(this.state.toString(), item, "YES");
+			//result.writeToFile(result);
+		}
+		else {
+			result.setResult(this.state.toString(), item, "NO");
+			//result.writeToFile();
+		}
 		
 		
 	}
