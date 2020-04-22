@@ -4,6 +4,7 @@ import java.io.File;
 
 import spendingPotentialState.state.SpendingPotentialStateContext;
 import spendingPotentialState.state.SpendingPotentialStateContextI;
+import spendingPotentialState.util.ResultI;
 import spendingPotentialState.validator.ValidatorFetcher;
 import spendingPotentialState.validator.ValidatorUtil;
 
@@ -38,11 +39,12 @@ public class SpendingPotentialStateDriver {
 						ValidatorFetcher.commandLineValidator(args, REQUIRED_NUMBER_OF_ARGS),
 						ValidatorFetcher.missingFileValidator(inputFilePath),ValidatorFetcher.missingFileValidator(itemFile),
 						ValidatorFetcher.emptyFileValidator(args[0]),ValidatorFetcher.emptyFileValidator(args[1]),
+						ValidatorFetcher.fileContentFormatValidator(inputFilePath),
 						ValidatorFetcher.windowValidator(args[2]));
 				
 				SpendingPotentialStateContextI sps = new SpendingPotentialStateContext(inputFilePath, itemFile, args[2], outputFile);
 				sps.checkPotentialState();
-
+		
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
