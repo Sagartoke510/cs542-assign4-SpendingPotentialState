@@ -16,6 +16,7 @@ import java.util.Map;
 public class FileProcessor {
 
 	private BufferedReader reader;
+	private BufferedReader iReader;
 	private String line;
 	private Map<String, List<String>> itemsList=null;
 
@@ -45,24 +46,26 @@ public class FileProcessor {
 
 		String newValue = line.trim();
 		line = reader.readLine();
+		//close();
 		return newValue;
 	}
 
 	public Map<String,List<String>> fetchItems(String itemFile) throws IOException{
-		reader = new BufferedReader(new FileReader(new File(itemFile)));
+		iReader = new BufferedReader(new FileReader(new File(itemFile)));
 		String[] list = new String[2];
 		itemsList = new HashMap<String, List<String>>();
-		ArrayList<String> itemsValue = new ArrayList<>();
-		while(true) {
-		line = reader.readLine();
 		
+		String line="";
+		while(true) {
+		line = iReader.readLine();
+		ArrayList<String> itemsValue = new ArrayList<String>();
 		if(null == line) break;
 		list=line.split(":");
 		
-		if(itemsList.containsValue(list[0])) {
+		if(!itemsList.containsKey(list[0])) {
 			itemsList.put(list[0], itemsValue);
 		}
-		itemsList.get(list[0]).add(list[1]);
+			itemsList.get(list[0]).add(list[1]);
 		}
 		return itemsList;
 		
