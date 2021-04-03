@@ -34,7 +34,7 @@ Description: Compiles your code and generates .class files inside the BUILD fold
 ## Instruction to run:
 
 Requirement: input file should be in numberPlay folder
-#### Use the below command to run the program.
+## Use the below command to run the program.
 
 ```commandline
 ant run -buildfile spendingPotentialState/src/build.xml  
@@ -45,7 +45,7 @@ ant run -buildfile spendingPotentialState/src/build.xml
 
 -----------------------------------------------------------------------
 
-Description:
+## Description:
 State Pattern implementation
 
 1. Assumption:
