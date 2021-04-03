@@ -44,7 +44,8 @@ ant run -buildfile spendingPotentialState/src/build.xml
 -DoutputFile=<!-- Output filename. -->
 
 -----------------------------------------------------------------------
-## Description:
+
+Description:
 State Pattern implementation
 
 1. Assumption:
